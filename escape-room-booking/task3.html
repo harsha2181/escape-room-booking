@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Nowayout Architecture Tree Diagram</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f0f4f8;
+    margin: 40px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .tree-container {
+    position: relative;
+    width: 500px;
+  }
+
+  /* Blocks */
+  .block {
+    background: #2196f3;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    margin: 20px auto;
+    width: 240px;
+    box-shadow: 0 4px 10px rgba(33, 150, 243, 0.5);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Levels container */
+  .level {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+  }
+
+  /* Arrows container */
+  svg {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 550px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .arrow {
+    stroke: #2196f3;
+    stroke-width: 3;
+    fill: none;
+    marker-end: url(#arrowhead);
+  }
+</style>
+</head>
+<body>
+  <div class="tree-container">
+
+    <!-- Blocks as tree levels -->
+    <div class="level" style="margin-top: 10px;">
+      <div class="block" style="margin: 0 auto;">User</div>
+    </div>
+
+    <div class="level" style="margin-top: 80px;">
+      <div class="block">API Gateway</div>
+    </div>
+
+    <div class="level" style="margin-top: 80px; justify-content: space-around;">
+      <div class="block">Booking & Availability</div>
+      <div class="block">User & Auth Service</div>
+      <div class="block">Payment Service</div>
+    </div>
+
+    <div class="level" style="margin-top: 80px; justify-content: space-around;">
+      <div class="block" style="width: 180px;">Game Location Service</div>
+      <div class="block" style="width: 180px; background:#ff9800;">Event Bus (Message Broker)</div>
+      <div class="block" style="width: 180px;">Notification Service</div>
+    </div>
+
+    <div class="level" style="margin-top: 80px;">
+      <div class="block" style="width: 500px;">Reporting & Analytics Service</div>
+    </div>
+
+    <!-- SVG Arrows -->
+    <svg>
+      <defs>
+        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+          <polygon points="0 0, 10 3.5, 0 7" fill="#2196f3" />
+        </marker>
+      </defs>
+
+      <!-- User to API Gateway -->
+      <path class="arrow" d="M250 65 L250 110" />
+
+      <!-- API Gateway to Booking -->
+      <path class="arrow" d="M250 150 L140 190" />
+
+      <!-- API Gateway to Auth -->
+      <path class="arrow" d="M250 150 L250 190" />
+
+      <!-- API Gateway to Payment -->
+      <path class="arrow" d="M250 150 L360 190" />
+
+      <!-- Booking to Game Location -->
+      <path class="arrow" d="M140 230 L110 270" />
+
+      <!-- Booking to Event Bus -->
+      <path class="arrow" d="M140 230 L250 270" />
+
+      <!-- Payment to Event Bus -->
+      <path class="arrow" d="M360 230 L250 270" />
+
+      <!-- Event Bus to Notification -->
+      <path class="arrow" d="M250 310 L360 350" />
+
+      <!-- Event Bus to Reporting -->
+      <path class="arrow" d="M250 310 L250 430" />
+    </svg>
+  </div>
+</body>
+</html>
